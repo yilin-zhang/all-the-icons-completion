@@ -62,23 +62,23 @@
   "Return the icon for the candidate CAND of completion category file."
   (cond ((string-match-p "\\/$" cand)
          (concat
-          (all-the-icons-icon-for-dir cand :face 'all-the-icons-completion-dir-face :height 0.9)
-          " "))
-        (t (concat (all-the-icons-icon-for-file cand :height 0.9) " "))))
+          (all-the-icons-icon-for-dir cand :face 'all-the-icons-completion-dir-face :height 0.85)
+          "\t"))
+        (t (concat (all-the-icons-icon-for-file cand :height 0.85) "\t"))))
 
 (defun all-the-icons-completion-get-buffer-icon (cand)
   "Return the icon for the candidate CAND of completion category buffer."
   (let* ((mode (buffer-local-value 'major-mode (get-buffer cand)))
-         (icon (all-the-icons-icon-for-mode mode :height 0.9))
+         (icon (all-the-icons-icon-for-mode mode :height 0.85))
          (parent-icon (all-the-icons-icon-for-mode
-                       (get mode 'derived-mode-parent) :height 0.9)))
+                       (get mode 'derived-mode-parent) :height 0.85)))
     (concat
      (if (symbolp icon)
          (if (symbolp parent-icon)
              (all-the-icons-faicon "sticky-note-o")
            parent-icon)
        icon)
-     " ")))
+     "\t")))
 
 (defun all-the-icons-completion-get-bookmark-icon (cand)
   "Return the icon for the candidate CAND of completion category bookmark."
