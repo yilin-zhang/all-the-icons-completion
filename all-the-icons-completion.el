@@ -71,11 +71,15 @@
   (let* ((mode (buffer-local-value 'major-mode (get-buffer cand)))
          (icon (all-the-icons-icon-for-mode mode :height 0.85))
          (parent-icon (all-the-icons-icon-for-mode
-                       (get mode 'derived-mode-parent) :height 0.85)))
+                       (get mode 'derived-mode-parent) :height 0.85))
+         (filepath (buffer-file-name (get-buffer cand)))
+         )
     (concat
      (if (symbolp icon)
          (if (symbolp parent-icon)
-             (all-the-icons-faicon "sticky-note-o")
+             (if filepath
+                 (all-the-icons-icon-for-file filepath :height 0.85)
+               (all-the-icons-faicon "sticky-note-o"))
            parent-icon)
        icon)
      "\t")))
